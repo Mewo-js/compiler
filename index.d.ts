@@ -1,1 +1,4 @@
-export { mewoCompile } from "src/index.ts";
+import { mewoCompile } from "src/index.ts";
+declare module "@mewo-js/compiler" {
+    export { mewoCompile };
+}
