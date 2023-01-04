@@ -1,0 +1,31 @@
+{
+  "name": "@mewo-js/compiler",
+  "description": "Compiler for Mewo.js component files",
+  "module": "src/index.ts",
+  "version": "0.0.1",
+  "contributors": [
+    "Ján Gajdoš <gajdos.jan77@gmail.com>"
+  ],
+  "type": "module",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mewo-js/compiler.git"
+  },
+  "keywords": [
+    "framework",
+    "web",
+    "xml",
+    "transpiler"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "bun-types": "^0.4.0"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^4.0.12"
+  },
+  "types": "./index.d.ts"
+}

@@ -1,3 +1,3 @@
 # mewo-compiler
 
-Simple Compiler for .mewo files# compiler
+Simple Compiler for .mewo files

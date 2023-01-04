@@ -1,0 +1,1 @@
+export { mewoCompile } from "src/index.ts";
