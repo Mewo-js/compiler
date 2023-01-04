@@ -31,6 +31,7 @@ export const mewoCompile = (source: string) => {
     let code = ["const component = (target) => {"];
     
     let generated: string[] = [];
+    let mounts: string[] = [];
 
     const traverse = (node: any) => {
         for (const element of node) {
@@ -117,7 +118,7 @@ export const mewoCompile = (source: string) => {
             }
         }
         if (writeToStack) {
-            stack.pop();
+            const child = stack.pop();
             const parent = stack[stack.length - 1];
             const line = codeStack.pop();
             let isCustom = false;
@@ -128,16 +129,18 @@ export const mewoCompile = (source: string) => {
             }
             if (parent && isCustom) {
                 if (parent.includes("template"))
-                    generated.push(`${line}target);\n`);
+                    mounts.push(`${line}target);\n`);
                 else {
-                    generated.push(`${line}${parent.split(" ")[0]});\n`);
+                    mounts.push(`${line}${parent.split(" ")[0]});\n`);
                 }
             }
             if (parent && !isCustom) {
-                if (parent.includes("template"))
-                    generated.push(`${line}.mount(target);\n`);
-                else {
-                    generated.push(`${line}.mount(${parent.split(" ")[0]});\n`);
+                if (parent.includes("template")) {
+                    generated.push(`${line};\n`);
+                    mounts.push(`${child?.split(" ")[0]}.mount(target);\n`);
+                } else {
+                    generated.push(`${line};\n`);
+                    mounts.push(`${child?.split(" ")[0]}.mount(${parent.split(" ")[0]});\n`);
                 }
             }
         }
@@ -146,6 +149,7 @@ export const mewoCompile = (source: string) => {
     traverse(obj);
 
     code.push("\n", ...generated);
+    code.push("\n", ...mounts);
     code.push("\n}\nexport default component;");
     code.splice(0, 0, "import { Mewo } from \"@mewo-js/core\";\n");
 

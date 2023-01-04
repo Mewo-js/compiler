@@ -2,7 +2,7 @@
   "name": "@mewo-js/compiler",
   "description": "Compiler for Mewo.js component files",
   "module": "src/index.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "contributors": [
     "Ján Gajdoš <gajdos.jan77@gmail.com>"
   ],
