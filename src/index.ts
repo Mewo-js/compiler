@@ -90,12 +90,11 @@ export const mewoCompile = (source: string) => {
                         if (attr.startsWith("!")) {
                             codeStack[codeStack.length - 1] += `.on("${attr.replace("!", "")}", ${element[el][attr]})`;
                         } else if (attr == "class") {
-                            let strArr = "[";
                             const classes = element[el][attr].split(" ");
+                            let strArr = "";
                             classes.forEach((element: string) => {
                                 strArr += `"${element}", `;
                             });
-                            strArr += "]";
                             codeStack[codeStack.length - 1] += `.addClass(${strArr})`;
                         } else {
                             codeStack[codeStack.length - 1] += `.attr("${attr}", "${element[el][attr]}")`;
